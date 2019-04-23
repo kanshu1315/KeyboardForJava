@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true" android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <stroke android:width="2dp" android:color="#c9c9c9" />
+            <padding android:bottom="@dimen/pay_r_btn_pading_v" android:left="@dimen/pay_r_btn_pading_h" android:right="@dimen/pay_r_btn_pading_h" android:top="@dimen/pay_r_btn_pading_v" />
+            <corners android:radius="@dimen/corner_size" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+            <stroke android:width="2dp" android:color="#c9c9c9" />
+            <padding android:bottom="@dimen/pay_r_btn_pading_v" android:left="@dimen/pay_r_btn_pading_h" android:right="@dimen/pay_r_btn_pading_h" android:top="@dimen/pay_r_btn_pading_v" />
+            <corners android:radius="@dimen/corner_size" />
+        </shape>
+    </item>
+
+</selector>

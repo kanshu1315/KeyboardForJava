@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">KeyboardForJava</string>
+
+
+    <string name="input_your_email">请输入接收电子发票的邮箱</string>
+    <string name="invoice_info">发票信息</string>
+    <string name="receive_info">接收信息</string>
+    <string name="invoice_type">抬头类型:</string>
+    <string name="invoice_title">发票抬头:</string>
+    <string name="open_bank_num">开户行账号:</string>
+    <string name="taxpayer_id">纳税人识别号:</string>
+    <string name="open_bank">开户行:</string>
+    <string name="telephone">联系电话:</string>
+    <string name="address">地址:</string>
+    <string name="email">电子邮箱:</string>
+    <string name="number">手机号码:</string>
+    <string name="send">发送</string>
+    <string name="company_head">公司抬头</string>
+    <string name="person_head">个人/事业单位抬头</string>
+    <string name="invoice_title_hint">请输入发票抬头</string>
+    <string name="telephone_hint">请输入电话号码</string>
+    <string name="address_hint">请输入地址</string>
+    <string name="open_bank_num_hint">请输入开户行账号</string>
+    <string name="open_bank_hint">请输入开户行</string>
+    <string name="email_hint">请输入电子邮箱</string>
+    <string name="taxpayer_id_hint">请输入纳税人识别号</string>
+
+</resources>

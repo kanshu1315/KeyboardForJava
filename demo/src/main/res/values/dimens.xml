@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="corner_size">6dp</dimen>
+    <dimen name="common_activity_margin_horizontal">16dp</dimen>
+    <dimen name="common_activity_margin_vertical">16dp</dimen>
+
+    <!--上下内边距-->
+    <dimen name="pay_r_btn_pading_v">12dp</dimen>
+    <!--左右内边距-->
+    <dimen name="pay_r_btn_pading_h">18dp</dimen>
+
+    <dimen name="edit_text_size_normal">14sp</dimen>
+    <dimen name="edit_text_size_small">14sp</dimen>
+    <dimen name="edit_text_size_smaller">12sp</dimen>
+    <dimen name="edit_text_size_smallest">12sp</dimen>
+    <dimen name="edit_text_size_big">18sp</dimen>
+    <dimen name="edit_text_size_bigger">22sp</dimen>
+    <dimen name="edit_text_size_biggest">28sp</dimen>
+</resources>

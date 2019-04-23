@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/common_activity_margin_horizontal"
+    android:layout_marginTop="@dimen/common_activity_margin_vertical"
+    android:layout_marginEnd="@dimen/common_activity_margin_horizontal"
+    android:layout_marginBottom="@dimen/common_activity_margin_vertical"
+    android:background="@mipmap/bg_modu"
+    android:orientation="vertical"
+    app:divider="@drawable/divider_line_gay"
+    app:showDividers="middle">
+
+
+
+    <!--head-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#0f69cd">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="32dp"
+            android:text="@string/input_your_email"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+    </FrameLayout>
+
+    <androidx.percentlayout.widget.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_invoice_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#d9d9d9"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:text="@string/invoice_info"
+            android:textSize="@dimen/edit_text_size_big"
+            app:layout_heightPercent="8%"
+            app:layout_widthPercent="100%" />
+
+        <RadioGroup
+            android:id="@+id/rg_invoice_type"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/tv_invoice_info"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_invoice_type"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/invoice_type" />
+
+            <RadioButton
+                android:id="@+id/rbtn_company_head"
+                style="@style/common_rbtn_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:checked="true"
+                android:text="@string/company_head" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <RadioButton
+                android:id="@+id/rbtn_person_head"
+                style="@style/common_rbtn_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:text="@string/person_head" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/ll_invoice_header"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/rg_invoice_type"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_invoice_header"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/invoice_title"
+                android:textColor="#e84f41" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_invoice_header"
+                style="@style/invoice_email_et_style"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tax_code"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/ll_invoice_header"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tax_code"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/taxpayer_id"
+                android:textColor="#e84f41" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_tax_code"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tax_bank"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/ll_tax_code"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="14%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tax_bank"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/open_bank" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_tax_bank"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tax_bank_account"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/rg_invoice_type"
+            android:layout_toEndOf="@id/ll_invoice_header"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tax_bank_account"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/open_bank_num" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_tax_bank_account"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tax_tel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/ll_tax_bank_account"
+            android:layout_toEndOf="@id/ll_tax_code"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tax_tel"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/telephone" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_tax_tel"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tax_addr"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/ll_tax_tel"
+            android:layout_toEndOf="@id/ll_tax_bank"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_tax_addr"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/address" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_tax_addr"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_receive_info"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/ll_tax_addr"
+            android:background="#d9d9d9"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:text="@string/receive_info"
+            android:textSize="@dimen/edit_text_size_big"
+            app:layout_heightPercent="8%"
+            app:layout_widthPercent="100%" />
+
+        <LinearLayout
+            android:id="@+id/ll_recv_email"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/tv_receive_info"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_recv_email"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/email"
+                android:textColor="#e84f41" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_recv_email"
+                style="@style/invoice_email_et_style"
+                android:inputType="textWebEmailAddress" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_recv_phone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/tv_receive_info"
+            android:layout_toEndOf="@id/ll_recv_email"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="50%">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_recv_phone"
+                style="@style/invoice_email_tag_style"
+                android:text="@string/number"
+                android:textColor="#e84f41" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_recv_phone"
+                style="@style/invoice_email_et_style" />
+
+        </LinearLayout>
+
+    </androidx.percentlayout.widget.PercentRelativeLayout>
+
+
+    <!--foot-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:background="@drawable/btn_comm_bg_blue_2"
+            android:text="send"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/edit_text_size_bigger" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/btn_comm_bg_gray_2"
+            android:text="cancel"
+            android:textColor="#0f69cd"
+            android:textSize="@dimen/edit_text_size_bigger" />
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
