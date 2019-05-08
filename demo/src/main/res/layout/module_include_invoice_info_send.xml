@@ -13,7 +13,6 @@
     app:showDividers="middle">
 
 
-
     <!--head-->
     <FrameLayout
         android:layout_width="match_parent"
@@ -176,7 +175,8 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_tax_bank_account"
-                style="@style/invoice_email_et_style" />
+                style="@style/invoice_email_et_style"
+                android:inputType="numberPassword" />
 
         </LinearLayout>
 

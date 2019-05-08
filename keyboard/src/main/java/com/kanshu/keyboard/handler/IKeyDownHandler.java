@@ -9,6 +9,6 @@ import com.kanshu.keyboard.view.KeyboardWindow;
 public interface IKeyDownHandler {
 
 
-    void handleKeyDown(KeyboardWindow window, EditText target, Button item, Key key);
+    void handleKeyDown(KeyboardWindow window, EditText target, Button item, Key key, boolean asPassword);
 
 }

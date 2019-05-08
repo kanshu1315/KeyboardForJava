@@ -1,6 +1,7 @@
 package com.kanshu.keyboard.handler;
 
 import android.text.Editable;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,10 +19,10 @@ public class KeyDownHandler implements IKeyDownHandler {
     private boolean TAG_LETTER_CASE = false;
 
     @Override
-    public void handleKeyDown(KeyboardWindow window, EditText target, Button item, Key key) {
+    public void handleKeyDown(KeyboardWindow window, EditText target, Button item, Key key, boolean asPassword) {
         switch (key.type) {
             case KeyboardCenter.KEY_TYPE_INPUT_CHAR:
-                handleCharKeyDown(target, key);
+                handleCharKeyDown(target, key, asPassword);
                 break;
             case KeyboardCenter.KEY_TYPE_OPERATOR:
                 handleOperatorKeyDown(window, target, key);
@@ -35,12 +36,26 @@ public class KeyDownHandler implements IKeyDownHandler {
         }
     }
 
-    protected void handleCharKeyDown(EditText target, Key key) {
+    protected void handleCharKeyDown(EditText target, Key key, boolean asPassword) {
+        if (asPassword) {
+            appendTextAsPassword(target, key);
+        } else {
+            appendText(target, key);
+        }
+    }
+
+
+    protected void appendText(EditText target, Key key) {
         //如果是字符类型的键，则将其追加显式到输入框中
         target.append(key.text);
-        //移动光标
-        //target.setSelection(text.length());
     }
+
+    protected void appendTextAsPassword(EditText target, Key key) {
+        //如果是字符类型的键，则将其追加显式到输入框中
+        appendText(target, key);
+        target.setTransformationMethod(PasswordTransformationMethod.getInstance());
+    }
+
 
     protected void handleOperatorKeyDown(KeyboardWindow window, EditText target, Key key) {
         switch (key.id) {

@@ -3,6 +3,7 @@ package com.kanshu.demo;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +14,9 @@ import android.widget.RadioGroup;
 import com.kanshu.keyboard.Keyboard;
 import com.kanshu.keyboard.KeyboardCenter;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 
@@ -25,7 +26,7 @@ import androidx.appcompat.widget.AppCompatEditText;
  * @author yuquanmao
  */
 
-public class SendInvoiceInfoActivity extends AppCompatActivity {
+public class SendInvoiceInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "InvoiceInfoSendActivity";
     //抬头类型
@@ -55,6 +56,10 @@ public class SendInvoiceInfoActivity extends AppCompatActivity {
     protected AppCompatEditText etRecvPhone;
 
 
+    AppCompatButton btnSend;
+    AppCompatButton btnCancel;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,24 +83,24 @@ public class SendInvoiceInfoActivity extends AppCompatActivity {
         llTaxBankAcount = findViewById(R.id.ll_tax_bank_account);
         llTaxTel = findViewById(R.id.ll_tax_tel);
         llTaxCode = findViewById(R.id.ll_tax_code);
+        btnSend = findViewById(R.id.btn_send);
+        btnCancel = findViewById(R.id.btn_cancel);
+
+        btnSend.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
 
 
-        etInvoiceHeader = findViewById(R.id.et_invoice_header);
-        etTaxTel = findViewById(R.id.et_tax_tel);
-        etTaxCode = findViewById(R.id.et_tax_code);
-        etTaxBank = findViewById(R.id.et_tax_bank);
-        etTaxBankAcount = findViewById(R.id.et_tax_bank_account);
-        etTaxAddr = findViewById(R.id.et_tax_addr);
-        etRecvEmail = findViewById(R.id.et_recv_email);
-        etRecvPhone = findViewById(R.id.et_recv_phone);
+        etTaxBankAcount.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         //发票抬头、开户行名称、地址 ，输入汉字 需要调用外部拼音输入法
         //开户行账号、电话、手机号 为纯数字
-        Keyboard.bind(KeyboardCenter.InputMethod.ONLY_NUMBER, etTaxBankAcount, etTaxTel, etRecvPhone);
+        Keyboard.bind(KeyboardCenter.InputMethod.ONLY_NUMBER, etTaxTel, etRecvPhone);
         //纳税人识别号为数字和字母混合键盘
         Keyboard.bind(etTaxCode, KeyboardCenter.InputMethod.NUMBER_LOWER_LETTER);
         //电子邮箱
         Keyboard.bind(etRecvEmail, KeyboardCenter.InputMethod.EMAIL);
+
+        Keyboard.bind(etTaxBankAcount, KeyboardCenter.InputMethod.ONLY_NUMBER, true);
 
         rgInvoiceType.setOnCheckedChangeListener((group, checkedId) -> changeInfoView(checkedId));
 
@@ -142,4 +147,15 @@ public class SendInvoiceInfoActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_send:
+                Log.i(TAG, "onClick: etTaxBankAccount.text=" + etTaxBankAcount.getText());
+                break;
+            case R.id.btn_cancel:
+                break;
+            default:
+        }
+    }
 }

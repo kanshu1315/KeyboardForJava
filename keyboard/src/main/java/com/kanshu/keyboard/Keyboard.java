@@ -8,12 +8,10 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 
-import com.kanshu.keyboard.handler.KeyDownHandler;
 import com.kanshu.keyboard.handler.IKeyDownHandler;
-import com.kanshu.keyboard.model.Key;
+import com.kanshu.keyboard.handler.KeyDownHandler;
 import com.kanshu.keyboard.util.DeviceUtils;
 import com.kanshu.keyboard.view.KeyboardWindow;
 
@@ -39,67 +37,49 @@ public class Keyboard {
 
 
     @SuppressLint("ClickableViewAccessibility")
-    public static void bind(final EditText target, final KeyboardCenter.InputMethod method, final IKeyDownHandler handler) {
+    public static void bind(final EditText target, final KeyboardCenter.InputMethod method, final IKeyDownHandler handler, boolean asPassword) {
         //阻止点击输入框时，弹出系统输入法
         target.setInputType(InputType.TYPE_NULL);
 
-        target.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        target.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                    InputMethodManager imm = (InputMethodManager) target.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null && imm.isActive()) {
-                        imm.hideSoftInputFromWindow(target.getWindowToken(), 0);
-                    }
-
-                    final KeyboardWindow keyboardWindow = new KeyboardWindow(target.getContext(), method, new KeyboardWindow.OnKeyDownListener() {
-                        @Override
-                        public void onKeyDown(KeyboardWindow window, Button item, Key key) {
-                            Log.i(TAG, "onKeyDown: " + key);
-                            handler.handleKeyDown(window, target, item, key);
-
-                        }
-                    });
-                    //获取焦点
-                    target.requestFocus();
-                    //计算键盘的弹出位置
-                    int[] pos = calculatePopWindowPos(target, keyboardWindow.getContentView());
-                    keyboardWindow.showAtLocation(v.getRootView(), Gravity.TOP | Gravity.START, pos[0], pos[1]);
+                InputMethodManager imm = (InputMethodManager) target.getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null && imm.isActive()) {
+                    imm.hideSoftInputFromWindow(target.getWindowToken(), 0);
                 }
-                return false;
+
+                final KeyboardWindow keyboardWindow = new KeyboardWindow(target.getContext(), method, (window, item, key) -> {
+                    Log.i(TAG, "onKeyDown: " + key);
+                    handler.handleKeyDown(window, target, item, key, asPassword);
+
+                });
+                //获取焦点
+                target.requestFocus();
+                //计算键盘的弹出位置
+                int[] pos = calculatePopWindowPos(target, keyboardWindow.getContentView());
+                keyboardWindow.showAtLocation(v.getRootView(), Gravity.TOP | Gravity.START, pos[0], pos[1]);
             }
+            return false;
         });
     }
 
-    public static void bind(final EditText target, final KeyboardCenter.InputMethod method) {
-        bind(target, method, DEFAULT_KEY_DOWN_HANDLER);
+    public static void bind(final EditText target, final KeyboardCenter.InputMethod method, boolean asPassword) {
+        bind(target, method, DEFAULT_KEY_DOWN_HANDLER, asPassword);
     }
 
-    public static void bind(KeyboardCenter.InputMethod method, EditText... targets) {
+    public static void bind(KeyboardCenter.InputMethod method, boolean asPassword, EditText... targets) {
         for (EditText target : targets) {
-            bind(target, method);
+            bind(target, method, asPassword);
         }
     }
 
-    public static void bindNumberPan(EditText... targets) {
-        bind(KeyboardCenter.InputMethod.ONLY_NUMBER, targets);
+    public static void bind(final EditText target, final KeyboardCenter.InputMethod method) {
+        bind(target, method, false);
     }
 
-    public static void bindBNumberPan(EditText... targets) {
-        bind(KeyboardCenter.InputMethod.B_NUMBER, targets);
-    }
-
-    public static void bindCNumberPan(EditText... targets) {
-        bind(KeyboardCenter.InputMethod.C_NUMBER, targets);
-    }
-
-    public static void bindDotNumberPan(EditText... targets) {
-        bind(KeyboardCenter.InputMethod.DOT_NUMBER, targets);
-    }
-
-    public static void bindEmailPan(EditText... targets) {
-        bind(KeyboardCenter.InputMethod.DOT_NUMBER, targets);
+    public static void bind(KeyboardCenter.InputMethod method, EditText... targets) {
+        bind(method, false, targets);
     }
 
 
